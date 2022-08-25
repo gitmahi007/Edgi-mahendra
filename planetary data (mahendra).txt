@@ -1,0 +1,47 @@
+class Planet:
+    def __init__(self):
+        self.planet_details=[]
+        self.count_of_moons=0
+        self.max_gas_in_all=""
+    def add_planet (self,name,gases,moons,rings):
+        self.planet_details.append([name,gases,moons,rings])
+        
+    # method to get count of planets having rings
+    def moons_having_rings(self):
+        for i in self.planet_details:
+            if i[3]=="Yes":
+                self.count_of_moons += i[2]
+        print("Count of moons of all planets having rings"+"  :  :"+str(self.count_of_moons))
+        
+    #method to get gas that having in most of the planets 
+    def maxium_avelable_gas_in_all_planets(self):
+        max_gas=0
+        all_gases=[]
+        
+        for i in self.planet_details:
+            for x in i[1].split(" "):
+                all_gases.append(x)
+        
+        gas_in_max_all=""
+        count=0
+        for i in all_gases:
+            if all_gases.count(i)>count:
+                count=all_gases.count(i)
+                gas_in_max_all=i
+            
+        self.max_gas_in_all=gas_in_max_all
+        print("Maxium gas present in all planets is"+"  :  "+self.max_gas_in_all)
+        
+#creating class instence
+planet_obj=Planet()  
+
+planet_obj.add_planet("Mercury"," ", 0 ,"No")
+planet_obj.add_planet("Venus", "Carbon Dioxide, Nitrogen" ,0, "No")
+planet_obj.add_planet("Earth", "Nitrogen Oxygen", 1, "No")
+planet_obj.add_planet("Jupitor","Hydrogen Helium", 79, "Yes")
+planet_obj.add_planet("Saturn", "Hydrogen Helium", 83, "Yes")
+planet_obj.add_planet("Uranus", "Hydrogen Helium Methane", 27 ,"Yes")
+
+# calling #method to retrive data
+planet_obj.moons_having_rings()
+planet_obj.maxium_avelable_gas_in_all_planets()
